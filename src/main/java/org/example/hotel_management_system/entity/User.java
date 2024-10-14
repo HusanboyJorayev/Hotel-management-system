@@ -27,14 +27,12 @@ public class User implements UserDetails {
     private Integer id;
     private String password;
     @Column(unique = true)
-    private String username;
-    @Column(unique = true)
     @NotBlank(message = "email cannot be null or empty")
     private String email;
     private String firstname;
     private String lastname;
     private Integer age;
-    private Long chatId;
+    private String code;
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private String phoneNumber;
@@ -54,7 +52,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

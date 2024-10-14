@@ -1,7 +1,5 @@
 package org.example.hotel_management_system.utils;
 
-
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Component;
