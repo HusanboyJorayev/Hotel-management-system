@@ -37,6 +37,12 @@ public class User implements UserDetails {
     private UserRole role;
     private String phoneNumber;
 
+    @ManyToOne
+    private Hotel hotel;
+
+    @ManyToOne
+    private Room room;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -22,12 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 @CrossOrigin(origins = "http://localhost:1111")
 public class AuthController {
-    private final UserRepository userRepository;
     private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userDetailsService;
-    private final JwtUtil jwtUtil;
-    private final PasswordEncoder passwordEncoder;
     private final MailSenderServiceImpl mailSenderService;
+    private final UserDetailsService userDetailsService;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody AuthRequest authRequest) throws Exception {
