@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.hotel_management_system.roles.RoomState;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +23,8 @@ public class Room {
     private Integer numberOfPeople;
     private Double price;
     private Integer hotelId;
+    @Enumerated(EnumType.STRING)
+    private RoomState status = RoomState.ACTIVE;
+    @Enumerated(EnumType.STRING)
+    private RoomState state = RoomState.EMPTY;
 }

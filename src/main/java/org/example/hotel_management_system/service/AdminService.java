@@ -11,4 +11,8 @@ public interface AdminService {
     ResponseEntity<?> deleteAdmin(Integer id);
 
     ResponseEntity<?> findAllAdmin();
+
+    ResponseEntity<?> deleteUserById(Integer id);
+
+    ResponseEntity<?> getAllUsers();
 }

@@ -9,6 +9,7 @@ import org.example.hotel_management_system.repository.HotelRepository;
 import org.example.hotel_management_system.repository.OrderRepository;
 import org.example.hotel_management_system.repository.RoomRepository;
 import org.example.hotel_management_system.repository.UserRepository;
+import org.example.hotel_management_system.roles.RoomState;
 import org.example.hotel_management_system.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,11 +46,14 @@ public class UserServiceImpl implements UserService {
         Optional<User> optional = this.userRepository.findById(userId);
         if (optional.isPresent()) {
             User user = optional.get();
-            Optional<Room> roomOptional = this.roomRepository.findById(roomId);
+            Optional<Room> roomOptional = this.roomRepository.findActiveEmptyRoomById(roomId);
             if (roomOptional.isPresent()) {
                 Room room = roomOptional.get();
                 if (user.getHotel().getId().equals(room.getHotelId())) {
                     if (room.getNumberOfPeople() >= numberOfPeople) {
+                        room.setEnable(true);
+                        room.setState(RoomState.FULL);
+                        this.roomRepository.save(room);
                         Order order = Order.builder()
                                 .beginDate(LocalDate.now())
                                 .endDate(LocalDate.now().plusDays(5))
@@ -61,7 +65,9 @@ public class UserServiceImpl implements UserService {
                     }
                     return ResponseEntity.ok("Choose another bigger room");
                 }
+                return ResponseEntity.ok("Something went wrong");
             }
+            return ResponseEntity.ok("Room is not found");
         }
         return ResponseEntity.ok("User is not found");
     }

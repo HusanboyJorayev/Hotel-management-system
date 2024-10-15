@@ -1,6 +1,5 @@
-package org.example.hotel_management_system.entity;
+package org.example.hotel_management_system.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,15 +11,24 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "orders")
-public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderDto {
     private Integer id;
     private Integer userId;
     private Integer roomId;
     private Integer numberOfPeople;
     private LocalDate beginDate;
     private LocalDate endDate;
+
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class CreateOrder {
+        private Integer userId;
+        private Integer roomId;
+        private Integer numberOfPeople;
+        private LocalDate beginDate;
+        private LocalDate endDate;
+    }
 }

@@ -28,4 +28,14 @@ public class AdminController {
     public ResponseEntity<?> findAllAdmin() {
         return ResponseEntity.ok(this.adminService.findAllAdmin());
     }
+
+    @DeleteMapping("/deleteUserById")
+    public ResponseEntity<?> deleteUserById(@RequestParam("id") Integer id) {
+        return ResponseEntity.ok(this.adminService.deleteUserById(id));
+    }
+
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(this.adminService.getAllUsers());
+    }
 }
